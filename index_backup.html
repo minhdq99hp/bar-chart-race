@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="data/data.js"></script>
+
+        <link rel="stylesheet" href="css/data_visualization.css" type="text/css"/>
+    </head>
+    <body>
+        <div id="dv_container">
+            <h1 id="dv_title"></h1>
+            <p id="dv_source"></p>
+            <div id="dv"></div>
+            <div id="dv_date_container">
+                <p>Date: </p><p id="dv_date">19/03/2020</p>
+            </div>
+            <div id="dv_total_container">
+                <p>Total: </p><p id="dv_total">100</p>
+            </div>
+            <p id="counter"></p>
+            
+        </div>
+        <div style="display: flex; justify-content: space-evenly; margin-top:20px; width: 720px;">
+            <button style="width: auto;" onclick="setState(0)">Run</button>
+            <button style="width: auto;" onclick="setState(1)">Stop</button>
+            <button style="width: auto;" onclick="setState(2)">Reset</button>
+        </div>
+
+        <script>
+            var state = 1;
+            function setState(s){ state = s;}
+
+            var init_values = data["time_points"][0]["values"];
+            var keysSorted = Object.keys(init_values).sort(function(a,b){return init_values[b] - init_values[a];});
+            var max_values = 0;
+            var total_cases = 0;
+            for(key of keysSorted){
+                if(init_values[key] > max_values) max_values = init_values[key];
+                total_cases += init_values[key];
+            }
+
+            var container = d3.select("#dv_container")
+                .style("width", data["width"] + "px")
+                .style("height", data["height"] + "px");
+            var title = container.select("#dv_title")
+                .html(data["title"]);
+            var source = container.select("#dv_source")
+                .html(data["source"]);
+            var dv = container.select("#dv")
+                .style("height", data["object_height"] * data["n_show"] + "px");
+
+            var objects = container.select("#dv")
+                .selectAll("div")
+                .data(data["objects"])
+                .enter()
+                .append("div")
+                .attr("class", "object")
+                .attr("data-name", function(d){ return d["name"]})
+                .style("top", function(d, i){
+                    return (i * data["object_height"]) + "px";
+                })
+                .style("margin-bottom", data["margin-bottom"] + "px")
+                .html("<div class=\"name_container\"><p class=\"name\"></p></div><div class=\"bar_container\"><div class=\"bar\"></div><p class=\"value\">0</p></div>");
+            
+            var names = d3.selectAll(".name")
+                .data(data["objects"])
+                .attr("data-name", function(d){ return d["name"]})
+                .html(function(d, i){return d["name"];});
+
+            var bars = d3.selectAll(".bar")
+                .data(data["objects"])
+                .attr("data-name", function(d){ return d["name"]})
+                .style("height", data["object_height"]-data["margin-bottom"] + "px")
+                .style("width", data["max_width"] + "px")
+                .style("background-color",function() {
+                    return "hsl(" + Math.random() * 360 + ",100%,50%)";
+                })
+                .html("<img class=\"icon\">")
+            
+            var icons = d3.selectAll(".icon")
+                .data(data["objects"])
+                .attr("src", function(d){
+                    return d["icon_url"];
+                })
+
+            var values = d3.selectAll(".value")
+                .data(data["objects"])
+                .attr("data-name", function(d){ return d["name"]});
+
+            var total = document.getElementById("dv_total");
+            var date = document.getElementById("dv_date");
+            
+            
+
+            // init data_visualization
+            
+            objects
+                .style("top", function(d, i){
+                    if(init_values.hasOwnProperty(this.getAttribute("data-name"))) return (keysSorted.indexOf(this.getAttribute("data-name")) * data["object_height"]) + "px";
+                    else return i * data["object_height"] + "px";
+                })
+            bars
+                .style("width", function(d, i){
+                    if(init_values.hasOwnProperty(this.getAttribute("data-name"))) return init_values[this.getAttribute("data-name")] / max_values * data["max_width"] + "px"; 
+                    else return "0px";
+                });
+            values
+                .html(function(d, i){
+                    if(init_values.hasOwnProperty(this.getAttribute("data-name"))) return init_values[this.getAttribute("data-name")]; 
+                    else return "NaN";
+                })
+            date.innerHTML = data["time_points"][0]["date"];
+            total.innerHTML = total_cases;
+            
+
+            var counter = document.getElementById('counter');
+            var id = setInterval(update, Math.floor(1000/data["fps"])); // 60 fps
+
+            var pos = 0;
+            var n_frames_per_time_point = Math.floor(data["duration"] / 1000 * data["fps"]);
+            var n_time_points = data["time_points"].length;
+            
+            var time_mark = 0;
+
+            var cur_values = data["time_points"][time_mark]["values"];
+            var next_values = data["time_points"][time_mark+1]["values"];
+            var diff = {};
+            for(k of Object.keys(cur_values)){
+                diff[k] = next_values[k] - cur_values[k];
+            }
+            var cur_keysSorted = Object.keys(cur_values).sort(function(a,b){return cur_values[b] - cur_values[a];});
+            var next_keysSorted = Object.keys(next_values).sort(function(a, b){return next_values[b] - next_values[a]});
+
+            var cur_poss = {};
+            var next_poss = {};
+            var diff_poss = {};
+            for(k of cur_keysSorted){
+                cur_poss[k] = cur_keysSorted.indexOf(k);
+                next_poss[k] = next_keysSorted.indexOf(k);
+                diff_poss[k] = next_poss[k] - cur_poss[k];
+            }
+
+            objects
+                .style("z-index", function(d){
+                    if(diff_poss.hasOwnProperty(this.getAttribute("data-name"))){
+                        if(diff_poss[this.getAttribute("data-name")] < 0) return 1;
+                        else return 0;
+                    }
+                    return 0;
+                })
+
+
+            function update(){
+                if(state == 0){
+                    if((pos+1) % n_frames_per_time_point == 0){
+                        time_mark += 1;
+
+                        date.innerHTML = data["time_points"][time_mark]["date"];
+                        cur_values = next_values;
+                        
+                        if(time_mark == n_time_points - 1){
+                            clearInterval(id);
+                            state = 1;
+                            next_values = data["time_points"][time_mark]["values"];
+                        }
+                        else next_values = data["time_points"][time_mark + 1]["values"];
+
+                        diff = {};
+                        for(k of Object.keys(cur_values)) diff[k] = next_values[k] - cur_values[k];
+                    
+                        cur_keysSorted = next_keysSorted;
+                        next_keysSorted = Object.keys(next_values).sort(function(a, b){return next_values[b] - next_values[a]});
+
+                        cur_poss = next_poss;
+                        next_poss = {};
+                        diff_poss = {};
+                        for(k of cur_keysSorted){
+                            next_poss[k] = next_keysSorted.indexOf(k);
+                            diff_poss[k] = next_poss[k] - cur_poss[k];
+                        }
+
+                        objects
+                            .style("z-index", function(d){
+                                if(diff_poss.hasOwnProperty(this.getAttribute("data-name"))){
+                                    if(diff_poss[this.getAttribute("data-name")] < 0) return 1;
+                                    else return 0;
+                                }
+                                return 0;
+                            })
+                                                
+                    }
+                    max_values = 0;
+                    values
+                        .html(function(d, i){
+                            if(cur_values.hasOwnProperty(this.getAttribute("data-name"))){
+                                var value = cur_values[this.getAttribute("data-name")] + diff[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark);
+                                if(value > max_values) max_values = value;
+                                return Math.floor(value);
+                            } 
+                            else return "NaN";
+                        });
+                    
+                    bars
+                        .style("width", function(d, i){
+                            if(cur_values.hasOwnProperty(this.getAttribute("data-name"))){
+                                var value = cur_values[this.getAttribute("data-name")] + diff[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark);
+                                return (value / max_values) * data["max_width"] + "px"; 
+                            }
+                            else return "0px";
+                        });
+                    
+                    // check for sort
+                    objects
+                        .style("top", function(d, i){
+                            if(cur_poss.hasOwnProperty(this.getAttribute("data-name"))){
+                                var value = (cur_poss[this.getAttribute("data-name")] + diff_poss[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark)) * data["object_height"] + "px";
+                                return value;
+                            }
+                            else return i * data["object_height"] + "px";
+                        });
+
+                    pos += 1;
+                }
+                else if(state == 1){
+                    // pass
+                }
+                else if(state == 2){
+                    pos = 0;
+                    time_mark = 0;
+                }
+                counter.innerHTML = pos;
+            }
+        </script>
+    </body>
+</html>
