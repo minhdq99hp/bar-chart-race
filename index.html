@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <title>Virus Racing Bar</title>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="data/data.js"></script>
 
@@ -19,7 +20,7 @@
                 <p>Tổng: </p><p id="dv_total">100</p>
             </div>
         </div>
-        <div style="display: flex; justify-content: space-around; margin-top:20px; width: 720px;">
+        <div style="display: flex; justify-content: space-around; margin-top:20px; width: 1920px;">
             <p id="frame_counter"></p>
             <button class="stateButton" onclick="setState(0)">Run</button>
             <button class="stateButton" onclick="setState(1)">Stop</button>
@@ -65,7 +66,7 @@
             var source = container.select("#dv_source")
                 .html(data["source"]);
             var dv = container.select("#dv")
-                .style("height", data["object_height"] * data["n_show"] + "px");
+                .style("height", data["object_height"] * data["n_show"] + "rem");
 
             var objects = container.select("#dv")
                 .selectAll("div")
@@ -74,8 +75,8 @@
                 .append("div")
                 .attr("class", "object")
                 .attr("data-name", d => d["name"])
-                .style("margin-bottom", data["margin-bottom"] + "px")
-                .style("top", function(d){return (cur_poss[this.getAttribute("data-name")] * data["object_height"]) + "px";})
+                .style("margin-bottom", data["margin-bottom"] + "rem")
+                .style("top", function(d){return (cur_poss[this.getAttribute("data-name")] * data["object_height"]) + "rem";})
                 .style("z-index", function(d){return diff_poss[this.getAttribute("data-name")] < 0 ? 1 : 0;})
                 .html('<div class="name_container"><p class="name"></p></div><div class="bar_container"><div class="bar"></div><p class="value">0</p></div>');
             
@@ -87,11 +88,12 @@
             var bars = d3.selectAll(".bar")
                 .data(data["objects"])
                 .attr("data-name", d => d["name"])
-                .style("height", data["object_height"]-data["margin-bottom"] + "px")
+                .style("height", data["object_height"]-data["margin-bottom"] + "rem")
                 .style("background-color",function(d){
                     return "hsl(" + Math.random() * 360 + ",100%,50%)";
+                    // return d["color"];
                 })
-                .style("width", function(d){ return cur_values[this.getAttribute("data-name")] / max_values * data["max_width"] + "px";})
+                .style("width", function(d){ return cur_values[this.getAttribute("data-name")] / max_values * data["max_width"] + "rem";})
                 .html('<img class="icon">');
             
             var icons = d3.selectAll(".icon")
@@ -166,7 +168,7 @@
                         .style("width", function(d, i){
                             if(cur_values.hasOwnProperty(this.getAttribute("data-name"))){
                                 var value = cur_values[this.getAttribute("data-name")] + diff_values[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark);
-                                return (value / max_values) * data["max_width"] + "px"; 
+                                return (value / max_values) * data["max_width"] + "rem"; 
                             }
                             else return "0px";
                         });
@@ -175,10 +177,10 @@
                     objects
                         .style("top", function(d, i){
                             if(cur_poss.hasOwnProperty(this.getAttribute("data-name"))){
-                                var value = (cur_poss[this.getAttribute("data-name")] + diff_poss[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark)) * data["object_height"] + "px";
+                                var value = (cur_poss[this.getAttribute("data-name")] + diff_poss[this.getAttribute("data-name")] * (pos/n_frames_per_time_point - time_mark)) * data["object_height"] + "rem";
                                 return value;
                             }
-                            else return i * data["object_height"] + "px";
+                            else return i * data["object_height"] + "rem";
                         });
 
                     pos += 1;
@@ -229,7 +231,7 @@
                 }
             }
 
-            var delayInMilliseconds = 3000; //1 second
+            var delayInMilliseconds = 5000; //5 second
             var id = null;
             setTimeout(function() {
                 id = setInterval(update, Math.floor(1000/data["fps"]));
