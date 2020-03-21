@@ -34,4 +34,4 @@ Small tip: You should choose the thumbnail as the last frame so it will be more 
 ## Future Features
 - The changing rate of bars' width, bars' position should be a log function or sigmoid function.
 - The bar that are rising should be larger than other bars while swapping.
-- The color for each bar should be unique. Random color selecting still result in indistinguishability if there are many bars.
+- The color for each bar should be unique. Random color selecting still result in indistinguishable colors if there are many bars.
