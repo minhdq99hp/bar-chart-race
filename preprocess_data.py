@@ -1,3 +1,4 @@
+import sys
 import xlrd
 import json
 import random
@@ -21,8 +22,8 @@ if __name__ == '__main__':
     sheet = wb.sheet_by_index(0)
 
     data = {
-        "title": "Data Visualization: Đường đua Corona tại Châu Âu",
-        "source": "Nguồn: coronavirus.thebaselab.com",
+        "title": "Data Visualization: Đường đua Corona tại Đông Nam Á",
+        "source": "Nguồn: tổng hợp Worldometers, WHO Thailand, Wikipedia, Singapore Government",
         "n_show": 10,
         "height": 1080,
         "width": 1920,
@@ -35,7 +36,9 @@ if __name__ == '__main__':
     }
     color_palette = ["hsla(340, 81%, 44%, 0.9)", "hsla(5, 96%, 61%, 0.9)", "hsla(168, 97%, 41%, 0.9)", "hsla(217, 48%, 39%, 0.9)", "hsla(47, 81%, 56%, 0.9)"]
 
-    countries = sheet.col_values(0, 3)
+    countries = sheet.col_values(0, 3, -2)
+    # print(countries)
+
     icon_urls = ['icons/' + remove_accents(x).replace(' ', '_').lower() + '.png' for x in countries]
 
     data["objects"] = []
@@ -58,8 +61,8 @@ if __name__ == '__main__':
     
     data["time_points"] = []
     dates = [datetime(*xlrd.xldate_as_tuple(d, 0)) for d in sheet.row_values(2, 1)]
-    # dates = [d.strftime("%d/%m/%y") for d in dates][:-1]
-    dates = [d.strftime("%d/%m") for d in dates][:-1]
+    # dates = [d.strftime("%d/%m/%y") for d in dates]
+    dates = [d.strftime("%d/%m") for d in dates]
 
     for j, d in enumerate(dates):
         values = {}
