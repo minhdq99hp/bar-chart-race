@@ -1,199 +1,245 @@
 {
     "title": "Data Visualization: Đường đua Corona tại Châu Âu",
-    "source": "Nguồn: thewuhanvirus.com",
+    "source": "Nguồn: coronavirus.thebaselab.com",
     "n_show": 10,
-    "height": 480,
-    "width": 720,
-    "object_height": 36,
-    "max_width": 570,
-    "margin-bottom": 5,
+    "height": 1080,
+    "width": 1920,
+    "object_height": 5,
+    "max_width": 95,
+    "margin-bottom": 0.5,
     "duration": 2000,
     "swap_duration": 120,
-    "fps": 50,
+    "fps": 60,
     "objects": [
         {
             "name": "Ý",
-            "icon_url": "icons/y.png"
+            "icon_url": "icons/y.png",
+            "color": "hsla(57, 81%, 56%, 0.9)"
         },
         {
             "name": "Tây Ban Nha",
-            "icon_url": "icons/tay_ban_nha.png"
+            "icon_url": "icons/tay_ban_nha.png",
+            "color": "hsla(233, 48%, 39%, 0.9)"
         },
         {
             "name": "Đức",
-            "icon_url": "icons/duc.png"
+            "icon_url": "icons/duc.png",
+            "color": "hsla(237, 48%, 39%, 0.9)"
         },
         {
             "name": "Pháp",
-            "icon_url": "icons/phap.png"
+            "icon_url": "icons/phap.png",
+            "color": "hsla(29, 96%, 61%, 0.9)"
         },
         {
             "name": "Thụy Sĩ",
-            "icon_url": "icons/thuy_si.png"
+            "icon_url": "icons/thuy_si.png",
+            "color": "hsla(25, 96%, 61%, 0.9)"
         },
         {
             "name": "Anh",
-            "icon_url": "icons/anh.png"
+            "icon_url": "icons/anh.png",
+            "color": "hsla(25, 81%, 56%, 0.9)"
         },
         {
             "name": "Hà Lan",
-            "icon_url": "icons/ha_lan.png"
+            "icon_url": "icons/ha_lan.png",
+            "color": "hsla(207, 48%, 39%, 0.9)"
         },
         {
             "name": "Nauy",
-            "icon_url": "icons/nauy.png"
+            "icon_url": "icons/nauy.png",
+            "color": "hsla(243, 48%, 39%, 0.9)"
         },
         {
             "name": "Bỉ",
-            "icon_url": "icons/bi.png"
+            "icon_url": "icons/bi.png",
+            "color": "hsla(18, 81%, 56%, 0.9)"
         },
         {
             "name": "Áo",
-            "icon_url": "icons/ao.png"
+            "icon_url": "icons/ao.png",
+            "color": "hsla(58, 81%, 56%, 0.9)"
         },
         {
             "name": "Thụy Điển",
-            "icon_url": "icons/thuy_dien.png"
+            "icon_url": "icons/thuy_dien.png",
+            "color": "hsla(311, 81%, 44%, 0.9)"
         },
         {
             "name": "Đan Mạch",
-            "icon_url": "icons/dan_mach.png"
+            "icon_url": "icons/dan_mach.png",
+            "color": "hsla(16, 96%, 61%, 0.9)"
         },
         {
             "name": "Cộng hòa Séc",
-            "icon_url": "icons/cong_hoa_sec.png"
+            "icon_url": "icons/cong_hoa_sec.png",
+            "color": "hsla(67, 81%, 56%, 0.9)"
         },
         {
             "name": "Bồ Đào Nha",
-            "icon_url": "icons/bo_dao_nha.png"
+            "icon_url": "icons/bo_dao_nha.png",
+            "color": "hsla(19, 96%, 61%, 0.9)"
         },
         {
             "name": "Hy Lạp",
-            "icon_url": "icons/hy_lap.png"
+            "icon_url": "icons/hy_lap.png",
+            "color": "hsla(40, 81%, 56%, 0.9)"
         },
         {
             "name": "Phần Lan",
-            "icon_url": "icons/phan_lan.png"
+            "icon_url": "icons/phan_lan.png",
+            "color": "hsla(11, 96%, 61%, 0.9)"
         },
         {
             "name": "Ireland",
-            "icon_url": "icons/ireland.png"
+            "icon_url": "icons/ireland.png",
+            "color": "hsla(195, 97%, 41%, 0.9)"
         },
         {
             "name": "Slovenia",
-            "icon_url": "icons/slovenia.png"
+            "icon_url": "icons/slovenia.png",
+            "color": "hsla(26, 96%, 61%, 0.9)"
         },
         {
             "name": "Estonia",
-            "icon_url": "icons/estonia.png"
+            "icon_url": "icons/estonia.png",
+            "color": "hsla(12, 96%, 61%, 0.9)"
         },
         {
             "name": "Iceland",
-            "icon_url": "icons/iceland.png"
+            "icon_url": "icons/iceland.png",
+            "color": "hsla(332, 81%, 44%, 0.9)"
         },
         {
             "name": "Ba Lan",
-            "icon_url": "icons/ba_lan.png"
+            "icon_url": "icons/ba_lan.png",
+            "color": "hsla(164, 97%, 41%, 0.9)"
         },
         {
             "name": "Romania",
-            "icon_url": "icons/romania.png"
+            "icon_url": "icons/romania.png",
+            "color": "hsla(71, 81%, 56%, 0.9)"
         },
         {
             "name": "Luxembourg",
-            "icon_url": "icons/luxembourg.png"
+            "icon_url": "icons/luxembourg.png",
+            "color": "hsla(218, 48%, 39%, 0.9)"
         },
         {
             "name": "Nga",
-            "icon_url": "icons/nga.png"
+            "icon_url": "icons/nga.png",
+            "color": "hsla(318, 81%, 44%, 0.9)"
         },
         {
             "name": "San Marino",
-            "icon_url": "icons/san_marino.png"
+            "icon_url": "icons/san_marino.png",
+            "color": "hsla(29, 81%, 56%, 0.9)"
         },
         {
             "name": "Slovakia",
-            "icon_url": "icons/slovakia.png"
+            "icon_url": "icons/slovakia.png",
+            "color": "hsla(185, 97%, 41%, 0.9)"
         },
         {
             "name": "Serbia",
-            "icon_url": "icons/serbia.png"
+            "icon_url": "icons/serbia.png",
+            "color": "hsla(35, 96%, 61%, 0.9)"
         },
         {
             "name": "Bulgaria",
-            "icon_url": "icons/bulgaria.png"
+            "icon_url": "icons/bulgaria.png",
+            "color": "hsla(201, 48%, 39%, 0.9)"
         },
         {
             "name": "Croatia",
-            "icon_url": "icons/croatia.png"
+            "icon_url": "icons/croatia.png",
+            "color": "hsla(243, 48%, 39%, 0.9)"
         },
         {
             "name": "Latvia",
-            "icon_url": "icons/latvia.png"
+            "icon_url": "icons/latvia.png",
+            "color": "hsla(319, 81%, 44%, 0.9)"
         },
         {
             "name": "Albania",
-            "icon_url": "icons/albania.png"
+            "icon_url": "icons/albania.png",
+            "color": "hsla(186, 97%, 41%, 0.9)"
         },
         {
             "name": "Hungary",
-            "icon_url": "icons/hungary.png"
+            "icon_url": "icons/hungary.png",
+            "color": "hsla(25, 81%, 56%, 0.9)"
         },
         {
             "name": "Belarus",
-            "icon_url": "icons/belarus.png"
+            "icon_url": "icons/belarus.png",
+            "color": "hsla(14, 96%, 61%, 0.9)"
         },
         {
             "name": "Malta",
-            "icon_url": "icons/malta.png"
+            "icon_url": "icons/malta.png",
+            "color": "hsla(240, 48%, 39%, 0.9)"
         },
         {
             "name": "Andorra",
-            "icon_url": "icons/andorra.png"
+            "icon_url": "icons/andorra.png",
+            "color": "hsla(244, 48%, 39%, 0.9)"
         },
         {
             "name": "Bosnia",
-            "icon_url": "icons/bosnia.png"
+            "icon_url": "icons/bosnia.png",
+            "color": "hsla(149, 97%, 41%, 0.9)"
         },
         {
             "name": "Kazakhstan",
-            "icon_url": "icons/kazakhstan.png"
+            "icon_url": "icons/kazakhstan.png",
+            "color": "hsla(198, 48%, 39%, 0.9)"
         },
         {
             "name": "Azerbaijan",
-            "icon_url": "icons/azerbaijan.png"
+            "icon_url": "icons/azerbaijan.png",
+            "color": "hsla(158, 97%, 41%, 0.9)"
         },
         {
             "name": "Macedonia",
-            "icon_url": "icons/macedonia.png"
+            "icon_url": "icons/macedonia.png",
+            "color": "hsla(223, 48%, 39%, 0.9)"
         },
         {
             "name": "Moldova",
-            "icon_url": "icons/moldova.png"
+            "icon_url": "icons/moldova.png",
+            "color": "hsla(45, 81%, 56%, 0.9)"
         },
         {
             "name": "Lithuana",
-            "icon_url": "icons/lithuana.png"
+            "icon_url": "icons/lithuana.png",
+            "color": "hsla(28, 81%, 56%, 0.9)"
         },
         {
             "name": "Liechtenstein",
-            "icon_url": "icons/liechtenstein.png"
+            "icon_url": "icons/liechtenstein.png",
+            "color": "hsla(3, 96%, 61%, 0.9)"
         },
         {
             "name": "Ukraine",
-            "icon_url": "icons/ukraine.png"
+            "icon_url": "icons/ukraine.png",
+            "color": "hsla(12, 96%, 61%, 0.9)"
         },
         {
             "name": "Monaco",
-            "icon_url": "icons/monaco.png"
+            "icon_url": "icons/monaco.png",
+            "color": "hsla(142, 97%, 41%, 0.9)"
         },
         {
             "name": "Montenegro",
-            "icon_url": "icons/montenegro.png"
+            "icon_url": "icons/montenegro.png",
+            "color": "hsla(329, 81%, 44%, 0.9)"
         },
         {
             "name": "Thành Vantican",
-            "icon_url": "icons/thanh_vantican.png"
+            "icon_url": "icons/thanh_vantican.png",
+            "color": "hsla(199, 48%, 39%, 0.9)"
         }
     ],
     "time_points": [
@@ -2755,7 +2801,7 @@
                 "Đức": 4585,
                 "Pháp": 4396,
                 "Thụy Sĩ": 1359,
-                "Anh": 1061,
+                "Anh": 1140,
                 "Hà Lan": 959,
                 "Nauy": 1112,
                 "Bỉ": 689,
@@ -2806,7 +2852,7 @@
                 "Đức": 5813,
                 "Pháp": 5284,
                 "Thụy Sĩ": 2217,
-                "Anh": 1391,
+                "Anh": 1370,
                 "Hà Lan": 1135,
                 "Nauy": 1262,
                 "Bỉ": 886,
@@ -2857,7 +2903,7 @@
                 "Đức": 7272,
                 "Pháp": 6473,
                 "Thụy Sĩ": 2353,
-                "Anh": 1543,
+                "Anh": 1390,
                 "Hà Lan": 1413,
                 "Nauy": 1341,
                 "Bỉ": 1058,
@@ -2908,7 +2954,7 @@
                 "Đức": 9360,
                 "Pháp": 7570,
                 "Thụy Sĩ": 2677,
-                "Anh": 1950,
+                "Anh": 1540,
                 "Hà Lan": 1706,
                 "Nauy": 1348,
                 "Bỉ": 1243,
@@ -2960,7 +3006,7 @@
                 "Pháp": 7730,
                 "Thụy Sĩ": 2742,
                 "Anh": 1950,
-                "Hà Lan": 1705,
+                "Hà Lan": 2050,
                 "Nauy": 1523,
                 "Bỉ": 1486,
                 "Áo": 1471,

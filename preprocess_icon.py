@@ -15,13 +15,13 @@ if __name__ == '__main__':
             
             img = cv2.imread(output_file_path)
             h, w, _ = img.shape
-            resized_img = cv2.resize(img, (32, 32 * h//w))
+            resized_img = cv2.resize(img, (128, 128 * h//w))
             
             cv2.imwrite(output_file_path, resized_img)
         else:                
             img = cv2.imread(file_path)
             h, w, _ = img.shape
-            resized_img = cv2.resize(img, (32, 32 * h//w))
+            resized_img = cv2.resize(img, (128, 128 * h//w))
             
             cv2.imwrite(output_file_path, resized_img)
     

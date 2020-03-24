@@ -1,7 +1,7 @@
 #dv_container {
     /* border: 1px solid lightgray; */
+    /* border: 5px solid black; */
     background-color: white;
-    padding: 10px;
     overflow: hidden;
     position: relative;
 }
@@ -13,13 +13,14 @@
 
 #dv_title {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
-    margin: 0px;
+    font-size: 4rem;
+    margin: 1rem 1rem 1rem 2rem;
 }
 
 #dv_source {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin-top: 0px;
+    margin: 1rem 1rem 1rem 2rem;
+    font-size: 2rem;
 }
 
 div.object {
@@ -32,14 +33,13 @@ div.object {
 div.bar_container {
     display: flex;
     align-items: center;
-    flex:88%;
+    flex:86%;
 }
 
 div.bar {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    opacity: 0.8;
 }
 
 div.name_container {
@@ -47,42 +47,43 @@ div.name_container {
     margin: 0px;
     width: 100%;
     height: 100%;
-    padding-right: 5px;
     background-color: white;
-    flex:12%;
+    flex:14%;
 }
 
 .name {
     text-align: right;
-    font-size: small;
+    font-size: 2rem;
+    margin-right: 2rem;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 p.value {
-    margin: 0px 0px 0px 5px;
+    margin: 0px 0px 0px 0.5em;
+    font-size: 2rem;
 }
 
 img.icon {
-    height: 28px;
-    min-width: 28px;
-    max-width: 28px;
+    height: 4rem;
+    min-width: 4rem;
+    max-width: 4rem;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 2px;
+    margin-right: 0.2rem;
 }
 
 #dv_date_container {
     display: flex;
     position: absolute;
-    right: 10px;
-    bottom: 50px;
+    right: 2em;
+    bottom: 7em;
 }
 
 #dv_date_container > p {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 100px;
+    font-size: 18em;
     color: gray;
     opacity: 0.5;
 }
@@ -90,23 +91,26 @@ img.icon {
 #dv_total_container {
     display: flex;
     position: absolute;
-    right: 15px;
-    bottom: 10px;
+    right: 3em;
+    bottom: 1.5em;
     opacity: 0.5;
 }
 
 #dv_total_container > p {
-    margin: 0px 0px 0px 7px; 
+    margin: 0px 0px 0px 0.25em; 
     font-family: Arial, Helvetica, sans-serif;
     color: gray;
-    font-size: 40px;
+    font-size: 6em;
 }
 
 
 #frame_counter {
-    width: 80px;
+    font-size: 4em;
+    width: 5em;
+    margin: 0px;
 }
 
 .stateButton {
-    width: 100px;
+    width: 5em;
+    font-size: 4em;
 }

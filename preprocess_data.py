@@ -1,6 +1,8 @@
 import xlrd
 import json
+import random
 from datetime import datetime
+
 
 s1 = u'ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ'
 s0 = u'AAAAEEEIIOOOOUUYaaaaeeeiioooouuyAaDdIiUuOoUuAaAaAaAaAaAaAaAaAaAaAaAaEeEeEeEeEeEeEeEeIiIiOoOoOoOoOoOoOoOoOoOoOoOoUuUuUuUuUuUuUuYyYyYyYy'
@@ -20,27 +22,39 @@ if __name__ == '__main__':
 
     data = {
         "title": "Data Visualization: Đường đua Corona tại Châu Âu",
-        "source": "Nguồn: thewuhanvirus.com",
+        "source": "Nguồn: coronavirus.thebaselab.com",
         "n_show": 10,
-        "height": 480,
-        "width": 720,
-        "object_height": 36,
-        "max_width": 570,
-        "margin-bottom": 5,
+        "height": 1080,
+        "width": 1920,
+        "object_height": 5.5,
+        "max_width": 95,
+        "margin-bottom": 0.5,
         "duration": 2000,
         "swap_duration": 120,
         "fps": 60,
     }
+    color_palette = ["hsla(340, 81%, 44%, 0.9)", "hsla(5, 96%, 61%, 0.9)", "hsla(168, 97%, 41%, 0.9)", "hsla(217, 48%, 39%, 0.9)", "hsla(47, 81%, 56%, 0.9)"]
 
     countries = sheet.col_values(0, 3)
     icon_urls = ['icons/' + remove_accents(x).replace(' ', '_').lower() + '.png' for x in countries]
 
     data["objects"] = []
-    for country, icon_url in zip(countries, icon_urls):
+    for i, (country, icon_url) in enumerate(zip(countries, icon_urls)):
+        generated_color = random.choice(color_palette)
+        generated_color = generated_color.split(', ')
+        base_val = int(generated_color[0][5:])
+
+        generated_color[0] = f'hsla({abs(base_val + random.randint(-30, 30))}'
+        generated_color = ', '.join(generated_color)
+
+        # print(generated_color)
+
         data["objects"].append({
             "name": country,
-            "icon_url": icon_url
+            "icon_url": icon_url,
+            "color": generated_color
         })
+        
     
     data["time_points"] = []
     dates = [datetime(*xlrd.xldate_as_tuple(d, 0)) for d in sheet.row_values(2, 1)]
